@@ -100,8 +100,7 @@ DATABASES = {
 }
 
 DATABASE_ROUTERS = [
-    'multipleDb.databaseRouter.StaffRouter',
-    'multipleDb.databaseRouter.CustomerRouter'
+    'multipleDb.databaseRouter.MultiDBRouter',
 ]
 
 # Password validation

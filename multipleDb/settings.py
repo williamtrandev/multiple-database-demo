@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'customer.apps.CustomerConfig',
-    'staff.apps.StaffConfig'
+    'src.customer',
+    'src.staff',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -138,8 +139,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+AWS_ACCESS_KEY_ID = 'fgBqzjTz2GfBW905'
+AWS_SECRET_ACCESS_KEY = '2lBLHrdOqsmegzl33ybdqgf993XkOppk'
+AWS_S3_ENDPOINT_URL = 'https://vp.techhaus.vn/'
+AWS_STORAGE_BUCKET_NAME = 'actiup-internship'
+AWS_QUERYSTRING_AUTH = False
+

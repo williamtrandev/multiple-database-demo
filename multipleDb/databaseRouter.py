@@ -55,18 +55,18 @@
 
 class MultiDBRouter:
     route_app_labels = {"staff": "staff_db", "customer": "customer_db"}
-
+    default_db = "default"
     def db_for_read(self, model, **hints):
         app_label = model._meta.app_label
-        return self.route_app_labels.get(app_label, None)
+        return self.route_app_labels.get(app_label, self.default_db)
 
     def db_for_write(self, model, **hints):
         app_label = model._meta.app_label
-        return self.route_app_labels.get(app_label, None)
+        return self.route_app_labels.get(app_label, self.default_db)
 
     def allow_relation(self, obj1, obj2, **hints):
         app_label1, app_label2 = obj1._meta.app_label, obj2._meta.app_label
-        return app_label1 in self.route_app_labels or app_label2 in self.route_app_labels
+        return app_label1 in self.route_app_labels or app_label2 in self.route_app_labels or True
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
-        return db == self.route_app_labels.get(app_label, None)
+        return db == self.route_app_labels.get(app_label, self.default_db)
